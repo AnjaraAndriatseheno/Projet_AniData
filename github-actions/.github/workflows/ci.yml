@@ -47,7 +47,7 @@ jobs:
       - name: Vérification du style
         run: ruff check anidata_scraper/ tests/
 
-  # ---------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------a
   # JOB 2 : TESTS
   # Exécute pytest avec couverture sur Python 3.10 et 3.11.
   # La matrice permet de tester plusieurs versions en parallèle.
