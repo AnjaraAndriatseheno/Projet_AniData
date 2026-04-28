@@ -1,13 +1,14 @@
 """
-DAG scraper_dag — Lance le scraper AniDex et déclenche etl_dag.
+DAG scraper_dag — Lance le scraper AniDex et déclenche etl_dag puis stats_dag.
 
 Chaîne des tâches :
-    scraping → declencher_etl
+    scraping → declencher_etl → declencher_stats
 
-- scraping        : appelle scrape_to_file(), écrit un JSON dans /opt/airflow/data/raw/
-                    et pousse le chemin du fichier via XCom.
-- declencher_etl  : déclenche etl_dag en lui transmettant le chemin du fichier
-                    via le paramètre conf.
+- scraping          : appelle scrape_to_file(), écrit un JSON dans /opt/airflow/data/raw/
+                      et pousse le chemin du fichier via XCom.
+- declencher_etl    : déclenche etl_dag en lui transmettant le chemin du fichier
+                      via le paramètre conf.
+- declencher_stats  : déclenche stats_dag pour afficher les statistiques du scraping.
 """
 
 from __future__ import annotations
@@ -77,4 +78,10 @@ with DAG(
         wait_for_completion=False,
     )
 
-    scraping >> declencher_etl
+    declencher_stats = TriggerDagRunOperator(
+        task_id="declencher_stats",
+        trigger_dag_id="stats_dag",
+        wait_for_completion=False,
+    )
+
+    scraping >> declencher_etl >> declencher_stats

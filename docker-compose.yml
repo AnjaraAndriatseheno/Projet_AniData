@@ -17,6 +17,11 @@
 #
 # Pour utiliser l'image publiée sur GHCR au lieu du build local :
 #   AIRFLOW_IMAGE_NAME=ghcr.io/ton-org/ton-repo-airflow:latest docker compose up -d
+#
+# Les DAGs sont synchronisés automatiquement depuis GitHub (git-sync).
+# Dès qu'un push est effectué sur main, les DAGs sont mis à jour sous ~30s.
+# Si le dépôt est privé, définir GITSYNC_USERNAME et GITSYNC_PASSWORD dans un
+# fichier .env à la racine du projet.
 # =============================================================================
 
 x-airflow-common: &airflow-common
@@ -28,12 +33,14 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__FERNET_KEY: ""
     AIRFLOW__CORE__LOAD_EXAMPLES: "false"
     AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+    # Dossier des DAGs pointant vers la synchronisation git-sync
+    AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/git-sync/repo/dags
     # URL du mock-site accessible depuis les conteneurs
     AIRFLOW_VAR_MOCK_SITE_URL: "http://mock-site"
     AIRFLOW_VAR_SCRAPER_OUTPUT_DIR: "/opt/airflow/data/raw"
     AIRFLOW_VAR_ELASTICSEARCH_URL: "http://elasticsearch:9200"
   volumes:
-    - ./dags:/opt/airflow/dags
+    - git-sync-data:/opt/airflow/git-sync
     - airflow-data:/opt/airflow/data
     - airflow-logs:/opt/airflow/logs
   depends_on:
@@ -41,10 +48,36 @@ x-airflow-common: &airflow-common
       condition: service_healthy
     elasticsearch:
       condition: service_healthy
+    git-sync:
+      condition: service_started
   networks:
     - anidata-network
 
 services:
+
+  # ── Synchronisation automatique des DAGs depuis GitHub ────────────────────
+  # Surveille le dépôt GitHub toutes les 30 secondes via git pull.
+  # Dès qu'un push est détecté sur main, les DAGs sont mis à jour dans Airflow.
+  git-sync:
+    image: alpine:3.19
+    container_name: anidata-git-sync
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        apk add --no-cache git
+        if [ ! -d /git/repo/.git ]; then
+          git clone https://github.com/AnjaraAndriatseheno/Projet_AniData.git /git/repo
+        fi
+        while true; do
+          git -C /git/repo pull origin main
+          sleep 30
+        done
+    volumes:
+      - git-sync-data:/git
+    restart: unless-stopped
+    networks:
+      - anidata-network
 
   # ── Base de données Airflow ────────────────────────────────────────────────
   postgres:
@@ -156,6 +189,7 @@ volumes:
   airflow-logs:
   elasticsearch-data:
   grafana-data:
+  git-sync-data:
 
 # ── Réseau partagé ─────────────────────────────────────────────────────────────
 networks:
