@@ -57,7 +57,7 @@ services:
 
   # ── Synchronisation automatique des DAGs depuis GitHub ────────────────────
   # Surveille le dépôt GitHub toutes les 30 secondes via git pull.
-  # Dès qu'un push est détecté sur main, les DAGs sont mis à jour dans Airflow.
+  # Dès qu'un push est détecté sur ethan, les DAGs sont mis à jour dans Airflow.
   git-sync:
     image: alpine:3.19
     container_name: anidata-git-sync
@@ -67,10 +67,10 @@ services:
       - |
         apk add --no-cache git
         if [ ! -d /git/repo/.git ]; then
-          git clone https://github.com/AnjaraAndriatseheno/Projet_AniData.git /git/repo
+          git clone -b ethan https://github.com/AnjaraAndriatseheno/Projet_AniData.git /git/repo
         fi
         while true; do
-          git -C /git/repo pull origin main
+          git -C /git/repo pull origin ethan
           sleep 30
         done
     volumes:
