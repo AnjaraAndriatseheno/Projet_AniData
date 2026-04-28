@@ -22,11 +22,10 @@ env/
 
 # Data
 data/
-!data/raw/
-!data/raw/*.json
 *.json
 !tests/**/*.json
 
 # OS
 .DS_Store
 Thumbs.db
+.env
