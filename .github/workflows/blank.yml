@@ -13,7 +13,7 @@ name: CI
 # Évènements qui déclenchent le workflow
 on:
   push:
-    branches: [dev]
+    branches: [dev, ethan]
   pull_request:
     branches: [dev]
 

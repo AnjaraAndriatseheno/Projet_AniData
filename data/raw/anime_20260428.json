@@ -1,0 +1,1268 @@
+[
+  {
+    "id": "1",
+    "titre": "Attack on Titan",
+    "annee": "2013",
+    "studio": "Wit Studio",
+    "score": 9.0,
+    "genres": [
+      "Action",
+      "Drama",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "2",
+    "titre": "Death Note",
+    "annee": "2006",
+    "studio": "Madhouse",
+    "score": 8.6,
+    "genres": [
+      "Mystery",
+      "Psychological",
+      "Supernatural",
+      "Thriller"
+    ]
+  },
+  {
+    "id": "3",
+    "titre": "Fullmetal Alchemist: Brotherhood",
+    "annee": "2009",
+    "studio": "Bones",
+    "score": 9.1,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Drama",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "4",
+    "titre": "One Piece",
+    "annee": "1999",
+    "studio": "Toei Animation",
+    "score": 8.7,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Shounen"
+    ]
+  },
+  {
+    "id": "5",
+    "titre": "Naruto",
+    "annee": "2002",
+    "studio": "Studio Pierrot",
+    "score": 8.0,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Shounen"
+    ]
+  },
+  {
+    "id": "6",
+    "titre": "Naruto: Shippuden",
+    "annee": "2007",
+    "studio": "Studio Pierrot",
+    "score": 8.2,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Shounen"
+    ]
+  },
+  {
+    "id": "7",
+    "titre": "Cowboy Bebop",
+    "annee": "1998",
+    "studio": "Sunrise",
+    "score": 8.8,
+    "genres": [
+      "Action",
+      "Drama",
+      "Sci-Fi",
+      "Space"
+    ]
+  },
+  {
+    "id": "8",
+    "titre": "Demon Slayer",
+    "annee": "2019",
+    "studio": "Ufotable",
+    "score": null,
+    "genres": [
+      "Action",
+      "Historical",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "9",
+    "titre": "My Hero Academia",
+    "annee": "2016",
+    "studio": "Bones",
+    "score": 8.0,
+    "genres": [
+      "Action",
+      "Comedy",
+      "School",
+      "Super Power"
+    ]
+  },
+  {
+    "id": "10",
+    "titre": "Jujutsu Kaisen",
+    "annee": "2020",
+    "studio": "MAPPA",
+    "score": 8.6,
+    "genres": [
+      "Action",
+      "School",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "11",
+    "titre": "Spirited Away",
+    "annee": "2001",
+    "studio": "Studio Ghibli",
+    "score": 8.8,
+    "genres": [
+      "Adventure",
+      "Supernatural",
+      "Drama"
+    ]
+  },
+  {
+    "id": "12",
+    "titre": "Your Name",
+    "annee": "2016",
+    "studio": "CoMix Wave Films",
+    "score": 8.9,
+    "genres": [
+      "Romance",
+      "Supernatural",
+      "Drama"
+    ]
+  },
+  {
+    "id": "13",
+    "titre": "Princess Mononoke",
+    "annee": "1997",
+    "studio": "Studio Ghibli",
+    "score": 8.7,
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Historical"
+    ]
+  },
+  {
+    "id": "14",
+    "titre": "Steins;Gate",
+    "annee": "2011",
+    "studio": "White Fox",
+    "score": 9.1,
+    "genres": [
+      "Sci-Fi",
+      "Thriller",
+      "Drama"
+    ]
+  },
+  {
+    "id": "15",
+    "titre": "Code Geass",
+    "annee": "2006",
+    "studio": "Sunrise",
+    "score": 8.7,
+    "genres": [
+      "Action",
+      "Drama",
+      "Mecha",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "16",
+    "titre": "Neon Genesis Evangelion",
+    "annee": "1995",
+    "studio": "",
+    "score": 8.4,
+    "genres": [
+      "Mecha",
+      "Psychological",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "17",
+    "titre": "Hunter x Hunter (2011)",
+    "annee": "N/A",
+    "studio": "Madhouse",
+    "score": 9.0,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Shounen"
+    ]
+  },
+  {
+    "id": "18",
+    "titre": "Vinland Saga",
+    "annee": "2019",
+    "studio": "Wit Studio",
+    "score": 8.7,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Drama",
+      "Historical"
+    ]
+  },
+  {
+    "id": "19",
+    "titre": "Mob Psycho 100",
+    "annee": "2016",
+    "studio": "Bones",
+    "score": 8.5,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "20",
+    "titre": "One Punch Man",
+    "annee": "2015",
+    "studio": "Madhouse",
+    "score": 8.5,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Super Power"
+    ]
+  },
+  {
+    "id": "21",
+    "titre": "Bleach",
+    "annee": "2004",
+    "studio": "Studio Pierrot",
+    "score": 8.1,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Shounen",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "22",
+    "titre": "Dragon Ball Z",
+    "annee": "1989",
+    "studio": "Toei Animation",
+    "score": 8.2,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Martial Arts"
+    ]
+  },
+  {
+    "id": "23",
+    "titre": "Tokyo Ghoul",
+    "annee": "2014",
+    "studio": "Studio Pierrot",
+    "score": null,
+    "genres": [
+      "Action",
+      "Horror",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "24",
+    "titre": "Parasyte",
+    "annee": "2014",
+    "studio": "Madhouse",
+    "score": 8.3,
+    "genres": [
+      "Action",
+      "Horror",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "25",
+    "titre": "Made in Abyss",
+    "annee": "2017",
+    "studio": "Kinema Citrus",
+    "score": 8.7,
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Fantasy",
+      "Mystery"
+    ]
+  },
+  {
+    "id": "26",
+    "titre": "Re:Zero",
+    "annee": "2016",
+    "studio": "White Fox",
+    "score": 8.2,
+    "genres": [
+      "Drama",
+      "Fantasy",
+      "Psychological",
+      "Thriller"
+    ]
+  },
+  {
+    "id": "27",
+    "titre": "Violet Evergarden",
+    "annee": "2018",
+    "studio": "Kyoto Animation",
+    "score": 8.7,
+    "genres": [
+      "Drama",
+      "Fantasy",
+      "Slice of Life"
+    ]
+  },
+  {
+    "id": "28",
+    "titre": "Clannad: After Story",
+    "annee": "2008",
+    "studio": "Kyoto Animation",
+    "score": 8.9,
+    "genres": [
+      "Drama",
+      "Romance",
+      "Slice of Life",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "29",
+    "titre": "Monster",
+    "annee": "2004",
+    "studio": "Madhouse",
+    "score": 8.9,
+    "genres": [
+      "Drama",
+      "Mystery",
+      "Psychological",
+      "Thriller"
+    ]
+  },
+  {
+    "id": "30",
+    "titre": "Psycho-Pass",
+    "annee": "2012",
+    "studio": "Production I.G",
+    "score": 8.3,
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Thriller"
+    ]
+  },
+  {
+    "id": "31",
+    "titre": "Gintama",
+    "annee": "2006",
+    "studio": "Sunrise",
+    "score": 8.9,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Historical",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "32",
+    "titre": "Haikyuu!!",
+    "annee": "2014",
+    "studio": "Production I.G",
+    "score": 8.5,
+    "genres": [
+      "Comedy",
+      "Drama",
+      "School",
+      "Sports"
+    ]
+  },
+  {
+    "id": "33",
+    "titre": "Kaguya-sama: Love is War",
+    "annee": "2019",
+    "studio": "A-1 Pictures",
+    "score": 8.4,
+    "genres": [
+      "Comedy",
+      "Psychological",
+      "Romance",
+      "School"
+    ]
+  },
+  {
+    "id": "34",
+    "titre": "The Promised Neverland",
+    "annee": "N/A",
+    "studio": "CloverWorks",
+    "score": 8.5,
+    "genres": [
+      "Horror",
+      "Mystery",
+      "Psychological",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "35",
+    "titre": "Dr. Stone",
+    "annee": "2019",
+    "studio": "TMS Entertainment",
+    "score": 8.2,
+    "genres": [
+      "Adventure",
+      "Sci-Fi",
+      "Shounen"
+    ]
+  },
+  {
+    "id": "36",
+    "titre": "Chainsaw Man",
+    "annee": "2022",
+    "studio": "MAPPA",
+    "score": 8.5,
+    "genres": [
+      "Action",
+      "Horror",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "37",
+    "titre": "Spy x Family",
+    "annee": "2022",
+    "studio": "Wit Studio",
+    "score": 8.5,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Slice of Life"
+    ]
+  },
+  {
+    "id": "38",
+    "titre": "Cyberpunk: Edgerunners",
+    "annee": "2022",
+    "studio": "Studio Trigger",
+    "score": 8.6,
+    "genres": [
+      "Action",
+      "Drama",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "39",
+    "titre": "Bocchi the Rock!",
+    "annee": "2022",
+    "studio": "CloverWorks",
+    "score": 8.8,
+    "genres": [
+      "Comedy",
+      "Music",
+      "Slice of Life"
+    ]
+  },
+  {
+    "id": "40",
+    "titre": "Frieren: Beyond Journey's End",
+    "annee": "2023",
+    "studio": "Madhouse",
+    "score": 9.3,
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "41",
+    "titre": "Oshi no Ko",
+    "annee": "2023",
+    "studio": "Doga Kobo",
+    "score": 8.7,
+    "genres": [
+      "Drama",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "42",
+    "titre": "Jujutsu Kaisen Season 2",
+    "annee": "2023",
+    "studio": "MAPPA",
+    "score": 8.8,
+    "genres": [
+      "Action",
+      "School",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "43",
+    "titre": "Mushishi",
+    "annee": "2005",
+    "studio": "Artland",
+    "score": 8.7,
+    "genres": [
+      "Adventure",
+      "Historical",
+      "Mystery",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "44",
+    "titre": "Ergo Proxy",
+    "annee": "2006",
+    "studio": "Manglobe",
+    "score": 7.8,
+    "genres": [
+      "Mystery",
+      "Psychological",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "45",
+    "titre": "Serial Experiments Lain",
+    "annee": "1998",
+    "studio": "Triangle Staff",
+    "score": 8.0,
+    "genres": [
+      "Mystery",
+      "Psychological",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "46",
+    "titre": "Ghost in the Shell: SAC",
+    "annee": "2002",
+    "studio": "Production I.G",
+    "score": 8.4,
+    "genres": [
+      "Action",
+      "Mecha",
+      "Mystery",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "47",
+    "titre": "Trigun",
+    "annee": "1998",
+    "studio": "Madhouse",
+    "score": 8.2,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "48",
+    "titre": "Samurai Champloo",
+    "annee": "2004",
+    "studio": "",
+    "score": 8.5,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Historical"
+    ]
+  },
+  {
+    "id": "49",
+    "titre": "FLCL",
+    "annee": "2000",
+    "studio": "Gainax",
+    "score": 7.8,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "50",
+    "titre": "Nichijou",
+    "annee": "2011",
+    "studio": "Kyoto Animation",
+    "score": 8.5,
+    "genres": [
+      "Comedy",
+      "School",
+      "Slice of Life"
+    ]
+  },
+  {
+    "id": "51",
+    "titre": "K-On!",
+    "annee": "N/A",
+    "studio": "Kyoto Animation",
+    "score": null,
+    "genres": [
+      "Comedy",
+      "Music",
+      "School",
+      "Slice of Life"
+    ]
+  },
+  {
+    "id": "52",
+    "titre": "The Melancholy of Haruhi Suzumiya",
+    "annee": "2006",
+    "studio": "Kyoto Animation",
+    "score": 7.8,
+    "genres": [
+      "Comedy",
+      "Mystery",
+      "School",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "53",
+    "titre": "Lucky Star",
+    "annee": "2007",
+    "studio": "Kyoto Animation",
+    "score": 7.7,
+    "genres": [
+      "Comedy",
+      "School",
+      "Slice of Life"
+    ]
+  },
+  {
+    "id": "54",
+    "titre": "Toradora!",
+    "annee": "2008",
+    "studio": "J.C.Staff",
+    "score": 8.1,
+    "genres": [
+      "Comedy",
+      "Romance",
+      "School"
+    ]
+  },
+  {
+    "id": "55",
+    "titre": "Clannad",
+    "annee": "2007",
+    "studio": "Kyoto Animation",
+    "score": 8.0,
+    "genres": [
+      "Comedy",
+      "Drama",
+      "Romance",
+      "School"
+    ]
+  },
+  {
+    "id": "56",
+    "titre": "Angel Beats!",
+    "annee": "2010",
+    "studio": "P.A. Works",
+    "score": 8.1,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Drama",
+      "School",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "57",
+    "titre": "Anohana",
+    "annee": "2011",
+    "studio": "A-1 Pictures",
+    "score": 8.3,
+    "genres": [
+      "Drama",
+      "Slice of Life",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "58",
+    "titre": "A Silent Voice",
+    "annee": "2016",
+    "studio": "Kyoto Animation",
+    "score": 8.9,
+    "genres": [
+      "Drama",
+      "Romance",
+      "School"
+    ]
+  },
+  {
+    "id": "59",
+    "titre": "Weathering with You",
+    "annee": "2019",
+    "studio": "CoMix Wave Films",
+    "score": 8.1,
+    "genres": [
+      "Drama",
+      "Romance",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "60",
+    "titre": "Howl's Moving Castle",
+    "annee": "2004",
+    "studio": "Studio Ghibli",
+    "score": 8.7,
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Fantasy",
+      "Romance"
+    ]
+  },
+  {
+    "id": "61",
+    "titre": "My Neighbor Totoro",
+    "annee": "1988",
+    "studio": "Studio Ghibli",
+    "score": 8.3,
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "62",
+    "titre": "Castle in the Sky",
+    "annee": "1986",
+    "studio": "Studio Ghibli",
+    "score": 8.2,
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "63",
+    "titre": "NausicaÃ¤ of the Valley of the Wind",
+    "annee": "1984",
+    "studio": "Topcraft",
+    "score": 8.4,
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "64",
+    "titre": "Grave of the Fireflies",
+    "annee": "1988",
+    "studio": "Studio Ghibli",
+    "score": 8.5,
+    "genres": [
+      "Drama",
+      "Historical"
+    ]
+  },
+  {
+    "id": "65",
+    "titre": "Akira",
+    "annee": "1988",
+    "studio": "Tokyo Movie Shinsha",
+    "score": 8.1,
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "66",
+    "titre": "Ghost in the Shell (1995)",
+    "annee": "1995",
+    "studio": "Production I.G",
+    "score": 8.3,
+    "genres": [
+      "Action",
+      "Mecha",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "67",
+    "titre": "Perfect Blue",
+    "annee": "1997",
+    "studio": "Madhouse",
+    "score": 8.4,
+    "genres": [
+      "Drama",
+      "Horror",
+      "Psychological",
+      "Thriller"
+    ]
+  },
+  {
+    "id": "68",
+    "titre": "Paprika",
+    "annee": "N/A",
+    "studio": "Madhouse",
+    "score": 8.0,
+    "genres": [
+      "Mystery",
+      "Psychological",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "69",
+    "titre": "Millennium Actress",
+    "annee": "2001",
+    "studio": "Madhouse",
+    "score": 8.2,
+    "genres": [
+      "Drama",
+      "Historical",
+      "Romance"
+    ]
+  },
+  {
+    "id": "70",
+    "titre": "Tokyo Godfathers",
+    "annee": "2003",
+    "studio": "Madhouse",
+    "score": 8.3,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ]
+  },
+  {
+    "id": "71",
+    "titre": "Redline",
+    "annee": "2010",
+    "studio": "Madhouse",
+    "score": 8.1,
+    "genres": [
+      "Action",
+      "Sci-Fi",
+      "Sports"
+    ]
+  },
+  {
+    "id": "72",
+    "titre": "Summer Wars",
+    "annee": "2009",
+    "studio": "Madhouse",
+    "score": 7.9,
+    "genres": [
+      "Comedy",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "73",
+    "titre": "The Girl Who Leapt Through Time",
+    "annee": "2006",
+    "studio": "Madhouse",
+    "score": 8.1,
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Romance",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "74",
+    "titre": "Wolf Children",
+    "annee": "2012",
+    "studio": "Studio Chizu",
+    "score": 8.2,
+    "genres": [
+      "Drama",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "75",
+    "titre": "A Place Further than the Universe",
+    "annee": "2018",
+    "studio": "Madhouse",
+    "score": 8.5,
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Drama"
+    ]
+  },
+  {
+    "id": "76",
+    "titre": "March Comes in Like a Lion",
+    "annee": "2016",
+    "studio": "Shaft",
+    "score": 8.4,
+    "genres": [
+      "Drama",
+      "Slice of Life"
+    ]
+  },
+  {
+    "id": "77",
+    "titre": "Beastars",
+    "annee": "2019",
+    "studio": "Orange",
+    "score": 7.8,
+    "genres": [
+      "Drama",
+      "Psychological",
+      "Slice of Life"
+    ]
+  },
+  {
+    "id": "78",
+    "titre": "Dorohedoro",
+    "annee": "2020",
+    "studio": "MAPPA",
+    "score": 8.2,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Horror",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "79",
+    "titre": "Durarara!!",
+    "annee": "2010",
+    "studio": "Brain's Base",
+    "score": 8.2,
+    "genres": [
+      "Action",
+      "Mystery",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "80",
+    "titre": "Baccano!",
+    "annee": "2007",
+    "studio": "Brain's Base",
+    "score": 8.4,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Historical",
+      "Mystery"
+    ]
+  },
+  {
+    "id": "81",
+    "titre": "91 Days",
+    "annee": "2016",
+    "studio": "Shuka",
+    "score": 8.0,
+    "genres": [
+      "Action",
+      "Drama",
+      "Historical"
+    ]
+  },
+  {
+    "id": "82",
+    "titre": "Black Lagoon",
+    "annee": "2006",
+    "studio": "",
+    "score": 8.0,
+    "genres": [
+      "Action",
+      "Seinen"
+    ]
+  },
+  {
+    "id": "83",
+    "titre": "Berserk (1997)",
+    "annee": "1997",
+    "studio": "OLM",
+    "score": 8.5,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Drama",
+      "Fantasy",
+      "Horror"
+    ]
+  },
+  {
+    "id": "84",
+    "titre": "Berserk: The Golden Age Arc",
+    "annee": "2012",
+    "studio": "Studio 4Â°C",
+    "score": 8.0,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Drama",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "85",
+    "titre": "Durarara!!x2",
+    "annee": "N/A",
+    "studio": "Shuka",
+    "score": 7.8,
+    "genres": [
+      "Action",
+      "Mystery",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "86",
+    "titre": "Akame ga Kill!",
+    "annee": "2014",
+    "studio": "White Fox",
+    "score": 7.5,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "87",
+    "titre": "No Game No Life",
+    "annee": "2014",
+    "studio": "Madhouse",
+    "score": 8.0,
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "88",
+    "titre": "Konosuba",
+    "annee": "2016",
+    "studio": "Studio Deen",
+    "score": 8.1,
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "89",
+    "titre": "Overlord",
+    "annee": "2015",
+    "studio": "Madhouse",
+    "score": 7.9,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "90",
+    "titre": "Sword Art Online",
+    "annee": "2012",
+    "studio": "A-1 Pictures",
+    "score": 7.2,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Game",
+      "Romance"
+    ]
+  },
+  {
+    "id": "91",
+    "titre": "Log Horizon",
+    "annee": "2013",
+    "studio": "Satelight",
+    "score": 7.9,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy",
+      "Game"
+    ]
+  },
+  {
+    "id": "92",
+    "titre": "The Rising of the Shield Hero",
+    "annee": "2019",
+    "studio": "Kinema Citrus",
+    "score": 7.8,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Drama",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "93",
+    "titre": "Goblin Slayer",
+    "annee": "2018",
+    "studio": "White Fox",
+    "score": 7.4,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "94",
+    "titre": "That Time I Got Reincarnated as a Slime",
+    "annee": "2018",
+    "studio": "Eight Bit",
+    "score": 8.0,
+    "genres": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "95",
+    "titre": "Mushoku Tensei",
+    "annee": "2021",
+    "studio": "Studio Bind",
+    "score": 8.4,
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Ecchi",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "96",
+    "titre": "86",
+    "annee": "2021",
+    "studio": "A-1 Pictures",
+    "score": null,
+    "genres": [
+      "Action",
+      "Drama",
+      "Mecha",
+      "Sci-Fi"
+    ]
+  },
+  {
+    "id": "97",
+    "titre": "Odd Taxi",
+    "annee": "2021",
+    "studio": "OLM",
+    "score": 8.5,
+    "genres": [
+      "Drama",
+      "Mystery"
+    ]
+  },
+  {
+    "id": "98",
+    "titre": "Ranking of Kings",
+    "annee": "2021",
+    "studio": "Wit Studio",
+    "score": 8.5,
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "99",
+    "titre": "Sonny Boy",
+    "annee": "2021",
+    "studio": "Madhouse",
+    "score": 7.7,
+    "genres": [
+      "Drama",
+      "Mystery",
+      "Sci-Fi",
+      "Supernatural"
+    ]
+  },
+  {
+    "id": "100",
+    "titre": "Lycoris Recoil",
+    "annee": "2022",
+    "studio": "A-1 Pictures",
+    "score": 8.2,
+    "genres": [
+      "Action"
+    ]
+  },
+  {
+    "id": "101",
+    "titre": "Blue Lock",
+    "annee": "2022",
+    "studio": "Eight Bit",
+    "score": 7.8,
+    "genres": [
+      "Drama",
+      "Sports"
+    ]
+  },
+  {
+    "id": "102",
+    "titre": "Mushoku Tensei Season 2",
+    "annee": "N/A",
+    "studio": "Studio Bind",
+    "score": 8.2,
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Fantasy"
+    ]
+  },
+  {
+    "id": "103",
+    "titre": "Undead Unluck",
+    "annee": "2023",
+    "studio": "David Production",
+    "score": 8.0,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Supernatural"
+    ]
+  }
+]
