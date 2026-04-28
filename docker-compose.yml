@@ -33,6 +33,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__FERNET_KEY: ""
     AIRFLOW__CORE__LOAD_EXAMPLES: "false"
     AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+    AIRFLOW__API__AUTH_BACKENDS: airflow.api.auth.backend.basic_auth
     # Dossier des DAGs pointant vers la synchronisation git-sync
     AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/git-sync/repo/dags
     # URL du mock-site accessible depuis les conteneurs
@@ -65,12 +66,22 @@ services:
     command:
       - -c
       - |
-        apk add --no-cache git
+        apk add --no-cache git curl
         if [ ! -d /git/repo/.git ]; then
           git clone -b ethan https://github.com/AnjaraAndriatseheno/Projet_AniData.git /git/repo
         fi
         while true; do
+          BEFORE=$(git -C /git/repo rev-parse HEAD)
           git -C /git/repo pull origin ethan
+          AFTER=$(git -C /git/repo rev-parse HEAD)
+          if [ "$BEFORE" != "$AFTER" ]; then
+            echo "Nouveau commit détecté — déclenchement de stats_dag"
+            sleep 10
+            curl -s -X POST http://airflow-webserver:8080/api/v1/dags/stats_dag/dagRuns \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Basic $(echo -n 'admin:admin' | base64)" \
+              -d "{\"conf\": {}, \"dag_run_id\": \"git_push_${AFTER}\"}"
+          fi
           sleep 30
         done
     volumes:
