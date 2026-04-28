@@ -13,9 +13,9 @@ name: CI
 # Évènements qui déclenchent le workflow
 on:
   push:
-    branches: [dev]
+    branches: [ethan]
   pull_request:
-    branches: [dev]
+    branches: [ethan]
 
 # Empêche que deux exécutions tournent en parallèle sur la même branche :
 # le nouveau push annule l'ancien run (économise du temps de runner).
@@ -88,3 +88,54 @@ jobs:
           name: coverage-report
           path: coverage.xml
           retention-days: 7
+
+  # ---------------------------------------------------------------------------
+  # JOB 3 : SCRAPING
+  # Lance le mock-site via Docker puis exécute le scraper.
+  # Tourne uniquement si lint + tests passent.
+  # Le fichier JSON produit est sauvegardé comme artefact GitHub Actions.
+  # ---------------------------------------------------------------------------
+  scrape:
+    name: Scraping
+    needs: [lint, tests]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Démarrage du mock-site
+        run: docker compose up -d mock-site
+
+      - name: Attente que le mock-site soit prêt
+        run: |
+          for i in $(seq 1 15); do
+            curl -sf http://localhost:8088 && break
+            echo "Attente... ($i/15)"
+            sleep 2
+          done
+
+      - name: Installation de Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - name: Installation des dépendances scraper
+        run: |
+          pip install -r anidata-scraper/requirements.txt
+          pip install -e anidata-scraper/
+
+      - name: Lancement du scraping
+        run: |
+          python -m anidata_scraper.scraper \
+            --base-url http://localhost:8088 \
+            --output-dir ./data/raw \
+            -v
+
+      - name: Sauvegarde du fichier JSON (artefact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: anime-data
+          path: data/raw/*.json
+          retention-days: 30
