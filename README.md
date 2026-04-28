@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AniData Lab — DevOps & CI/CD
 
 Pipeline de données automatisée pour le studio **Sakura Analytics**.  
@@ -216,3 +217,6 @@ Pour supprimer aussi les volumes (données Elasticsearch, Grafana) :
 ```bash
 docker compose down -v
 ```
+=======
+# Projet_AniData
+>>>>>>> 47d4f198d372fe6a0f177913f689f6f835691516
