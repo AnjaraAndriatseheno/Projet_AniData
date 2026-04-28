@@ -129,14 +129,12 @@ jobs:
             --output-dir ./data/raw \
             -v
 
-      - name: Commit et push du fichier JSON
-        if: github.event_name == 'push'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f data/raw/*.json
-          git diff --cached --quiet || git commit -m "data: scraping automatique $(date -u +'%Y-%m-%d %H:%M') UTC"
-          git push
+      - name: Sauvegarde du fichier JSON (artefact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: anime-data
+          path: data/raw/*.json
+          retention-days: 30
 
   # ---------------------------------------------------------------------------
   # JOB 4 : BUILD & PUSH IMAGE DOCKER AIRFLOW
