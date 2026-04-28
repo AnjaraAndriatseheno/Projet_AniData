@@ -3,24 +3,24 @@ name: CI
 # ===========================================================================
 # WORKFLOW CI — AniData Scraper
 # ---------------------------------------------------------------------------
-# Lance le lint et les tests à chaque push et à chaque Pull Request.
-# Utilisé pour la séance 2 (CI seule, sans déploiement).
+# Déclenché sur chaque push et PR vers la branche ethan.
 #
-# La progression vers la version complète CI/CD avec build+push d'image
-# Docker se fait dans .github/workflows/ci-cd.yml (séance 3).
+# Jobs :
+#   1. lint          → ruff sur le scraper
+#   2. tests         → pytest sur Python 3.10 et 3.11
+#   3. scrape        → lance le mock-site + scraper, commite le JSON dans le repo
+#   4. build         → build image Docker Airflow + push sur GHCR (push seulement)
 # ===========================================================================
 
-# Évènements qui déclenchent le workflow
 on:
   push:
     branches: [ethan]
   pull_request:
     branches: [ethan]
 
-# Empêche que deux exécutions tournent en parallèle sur la même branche :
-# le nouveau push annule l'ancien run (économise du temps de runner).
 permissions:
   contents: write
+  packages: write
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -29,7 +29,6 @@ concurrency:
 jobs:
   # ---------------------------------------------------------------------------
   # JOB 1 : LINT
-  # Vérifie le style de code avec ruff. Très rapide (~10 secondes).
   # ---------------------------------------------------------------------------
   lint:
     name: Lint (ruff)
@@ -52,15 +51,11 @@ jobs:
 
   # ---------------------------------------------------------------------------
   # JOB 2 : TESTS
-  # Exécute pytest avec couverture sur Python 3.10 et 3.11.
-  # La matrice permet de tester plusieurs versions en parallèle.
   # ---------------------------------------------------------------------------
   tests:
     name: Tests (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
-      # fail-fast: false continue les autres jobs même si un échoue
-      # (utile pour voir si le bug est lié à une version spécifique)
       fail-fast: false
       matrix:
         python-version: ["3.10", "3.11"]
@@ -84,7 +79,6 @@ jobs:
         run: pytest anidata-scraper/ --cov=anidata-scraper/anidata_scraper --cov-report=term-missing --cov-report=xml
 
       - name: Upload du rapport de couverture (artefact)
-        # Uniquement sur Python 3.10 pour éviter les doublons.
         if: matrix.python-version == '3.10'
         uses: actions/upload-artifact@v4
         with:
@@ -94,9 +88,8 @@ jobs:
 
   # ---------------------------------------------------------------------------
   # JOB 3 : SCRAPING
-  # Lance le mock-site via Docker puis exécute le scraper.
+  # Lance le mock-site + scraper, commite le JSON dans le repo.
   # Tourne uniquement si lint + tests passent.
-  # Le fichier JSON produit est sauvegardé comme artefact GitHub Actions.
   # ---------------------------------------------------------------------------
   scrape:
     name: Scraping
@@ -137,7 +130,6 @@ jobs:
             -v
 
       - name: Commit et push du fichier JSON
-        # Uniquement sur push (pas sur les PR)
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
@@ -145,3 +137,38 @@ jobs:
           git add -f data/raw/*.json
           git diff --cached --quiet || git commit -m "data: scraping automatique $(date -u +'%Y-%m-%d %H:%M') UTC"
           git push
+
+  # ---------------------------------------------------------------------------
+  # JOB 4 : BUILD & PUSH IMAGE DOCKER AIRFLOW
+  # Reconstruit l'image avec le nouveau code Python et la pousse sur GHCR.
+  # Tourne uniquement sur push (pas sur les PR) et si lint + tests passent.
+  # ---------------------------------------------------------------------------
+  build:
+    name: Build & Push Docker
+    needs: [lint, tests]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Configuration de Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Connexion à GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build et push de l'image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository }}-airflow:ethan
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
