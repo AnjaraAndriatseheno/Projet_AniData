@@ -1,0 +1,209 @@
+# =============================================================================
+# Stack complète AniData — Airflow + Elasticsearch + Grafana + Mock-site
+# =============================================================================
+#
+# Lancement :
+#   docker compose up -d
+#
+# Premier lancement uniquement (initialise la base Airflow) :
+#   docker compose up airflow-init
+#   docker compose up -d
+#
+# Interfaces accessibles :
+#   Airflow   → http://localhost:8080  (admin / admin)
+#   Grafana   → http://localhost:3000  (admin / admin)
+#   Elasticsearch → http://localhost:9200
+#   Mock-site → http://localhost:8088
+#
+# Pour utiliser l'image publiée sur GHCR au lieu du build local :
+#   AIRFLOW_IMAGE_NAME=ghcr.io/ton-org/ton-repo-airflow:latest docker compose up -d
+#
+# Les DAGs sont synchronisés automatiquement depuis GitHub (git-sync).
+# Dès qu'un push est effectué sur main, les DAGs sont mis à jour sous ~30s.
+# Si le dépôt est privé, définir GITSYNC_USERNAME et GITSYNC_PASSWORD dans un
+# fichier .env à la racine du projet.
+# =============================================================================
+
+x-airflow-common: &airflow-common
+  # Par défaut : image buildée localement. Remplacer par l'image GHCR après publication.
+  image: ${AIRFLOW_IMAGE_NAME:-anidata-airflow:local}
+  environment:
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__FERNET_KEY: ""
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+    AIRFLOW__API__AUTH_BACKENDS: airflow.api.auth.backend.basic_auth
+    # Dossier des DAGs pointant vers la synchronisation git-sync
+    AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/git-sync/repo/dags
+    # URL du mock-site accessible depuis les conteneurs
+    AIRFLOW_VAR_MOCK_SITE_URL: "http://mock-site"
+    AIRFLOW_VAR_SCRAPER_OUTPUT_DIR: "/opt/airflow/data/raw"
+    AIRFLOW_VAR_ELASTICSEARCH_URL: "http://elasticsearch:9200"
+  volumes:
+    - git-sync-data:/opt/airflow/git-sync
+    - airflow-data:/opt/airflow/data
+    - airflow-logs:/opt/airflow/logs
+  depends_on:
+    postgres:
+      condition: service_healthy
+    elasticsearch:
+      condition: service_healthy
+    git-sync:
+      condition: service_started
+  networks:
+    - anidata-network
+
+services:
+
+  # ── Synchronisation automatique des DAGs depuis GitHub ────────────────────
+  # Surveille le dépôt GitHub toutes les 30 secondes via git pull.
+  # Dès qu'un push est détecté sur ethan, les DAGs sont mis à jour dans Airflow.
+  git-sync:
+    image: alpine:3.19
+    container_name: anidata-git-sync
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        apk add --no-cache git curl
+        if [ ! -d /git/repo/.git ]; then
+          git clone -b ethan https://github.com/AnjaraAndriatseheno/Projet_AniData.git /git/repo
+        fi
+        while true; do
+          BEFORE=$(git -C /git/repo rev-parse HEAD)
+          git -C /git/repo pull origin ethan
+          AFTER=$(git -C /git/repo rev-parse HEAD)
+          if [ "$BEFORE" != "$AFTER" ]; then
+            echo "Nouveau commit détecté — déclenchement de stats_dag"
+            sleep 10
+            curl -s -X POST http://airflow-webserver:8080/api/v1/dags/stats_dag/dagRuns \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Basic $(echo -n 'admin:admin' | base64)" \
+              -d "{\"conf\": {}, \"dag_run_id\": \"git_push_${AFTER}\"}"
+          fi
+          sleep 30
+        done
+    volumes:
+      - git-sync-data:/git
+    restart: unless-stopped
+    networks:
+      - anidata-network
+
+  # ── Base de données Airflow ────────────────────────────────────────────────
+  postgres:
+    image: postgres:15-alpine
+    container_name: anidata-postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+    networks:
+      - anidata-network
+
+  # ── Initialisation Airflow (tourne une seule fois) ─────────────────────────
+  airflow-init:
+    <<: *airflow-common
+    container_name: anidata-airflow-init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        airflow db migrate
+        airflow users create \
+          --username admin \
+          --password admin \
+          --firstname Admin \
+          --lastname AniData \
+          --role Admin \
+          --email admin@anidata.local
+    restart: "no"
+
+  # ── Scheduler Airflow (execute les DAGs) ───────────────────────────────────
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: anidata-airflow-scheduler
+    command: scheduler
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "airflow", "jobs", "check", "--job-type", "SchedulerJob"]
+      interval: 30s
+      retries: 5
+
+  # ── Interface Web Airflow ──────────────────────────────────────────────────
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: anidata-airflow-webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      retries: 5
+
+  # ── Elasticsearch ──────────────────────────────────────────────────────────
+  elasticsearch:
+    image: elasticsearch:8.13.0
+    container_name: anidata-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health | grep -v '\"status\":\"red\"'"]
+      interval: 20s
+      retries: 10
+    networks:
+      - anidata-network
+
+  # ── Grafana ────────────────────────────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:10.4.0
+    container_name: anidata-grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - anidata-network
+
+  # ── Mock-site nginx ────────────────────────────────────────────────────────
+  mock-site:
+    image: nginx:alpine
+    container_name: anidata-mock-site
+    volumes:
+      - ./mock-site/site:/usr/share/nginx/html:ro
+    ports:
+      - "8088:80"
+    networks:
+      - anidata-network
+
+# ── Volumes persistants ────────────────────────────────────────────────────────
+volumes:
+  postgres-data:
+  airflow-data:
+  airflow-logs:
+  elasticsearch-data:
+  grafana-data:
+  git-sync-data:
+
+# ── Réseau partagé ─────────────────────────────────────────────────────────────
+networks:
+  anidata-network:
+    driver: bridge
+    name: anidata-network
